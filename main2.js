@@ -1,6 +1,7 @@
 /*set global variables*/
 const choices = ["rock", "paper", "scissors"]
 const winners = []
+const longWinners = []
 
 /*play game*/
 function playGame(){
@@ -10,6 +11,7 @@ function playGame(){
     }
     document.querySelector("button").textContent = "Start new game"
     logWinners()
+    longLogWinners()
 }
 /*play round*/;
 function playRound(round){
@@ -17,6 +19,7 @@ function playRound(round){
     const computerSelection = computerChoice();
     const winner = checkWinner(playerSelection, computerSelection);
     winners.push(winner);
+    longWinners.push(winner);
     logRound(playerSelection, computerSelection, winner, round);
 }
 /*get computer choice*/
@@ -66,7 +69,7 @@ function checkWinner(choicePlayer, choiceComputer){
 function logWinners(){
     let playerWins = winners.filter((winner) => winner == "You have won this round").length;
     let computerWins = winners.filter((winner) => winner == "The computer won this round").length;
-    let gameTies = winners.filter((winner) => winner == "This round was a tie").length;
+    let gameTies = winners.filter((winner) => winner == "This round was a tie").length; 
     console.log("Results:");
     console.log("Player won: ", playerWins, " time(s)");
     console.log("Computer won: ", computerWins, " time(s)");
@@ -80,4 +83,15 @@ function logRound(playerChoice, computerChoice, winner, round){
     console.log("Computer chose: ", computerChoice);
     console.log(winner, " Won this round");
     console.log("--------------------------");
+}
+
+function longLogWinners(){
+    let longPlayerWins = longWinners.filter((winner) => winner == "You have won this round").length;
+    let longComputerWins = longWinners.filter((winner) => winner == "The computer won this round").length;
+    let longGameTies = longWinners.filter((winner) => winner == "This round was a tie").length;
+    console.log("--------------------------");
+    console.log("Long term results:");
+    console.log("Player has won: ", longPlayerWins, " times");
+    console.log("Computer has won: ", longComputerWins, " times");
+    console.log("The game has been tied ", longGameTies, " times");
 }
