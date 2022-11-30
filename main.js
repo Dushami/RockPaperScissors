@@ -2,51 +2,43 @@
 const choices = ["rock", "paper", "scissors"]
 const winners = []
 
+const button = document.querySelector('.buttons');
+    button.addEventListener('click', () => {
+        playGame();
+    });
+
 /*play game*/
 function playGame(){
-    console.clear();
-    for(let i = 1; i < 6; i++){
-        playRound(i);
-    }
-    document.querySelector("button").textContent = "Start new game"
-    logWinners()
+    playRound()
+    /*logWinners()*/
 }
 /*play round*/;
 function playRound(round){
-    const playerSelection = playerChoice();
+    const playerSelection = choice
     const computerSelection = computerChoice();
     const winner = checkWinner(playerSelection, computerSelection);
     winners.push(winner);
     logRound(playerSelection, computerSelection, winner, round);
 }
+
 /*get computer choice*/
 function computerChoice(){
     return choices[Math.floor(Math.random()*choices.length)];
 }
 
 /*get player choice*/
-function playerChoice(){
-    let input = prompt("Choose Rock, Paper or Scissors");
-    while (input == null){
-        input = prompt("Choose Rock, Paper or Scissors");
-    }
-    input = input.toLowerCase();
-    let check = validateInput(input);
-    while (check == false){
-        input = prompt("Please select valid choice, capitalisation is not important however spelling must be correct");
-        while (input == null){
-            input = prompt("Please select valid choice, capitalisation is not important however spelling must be correct");
-        }
-        input = input.toLowerCase();
-        check = validateInput(input);
-    }
-    return input;
-}
-
-/*validate player choice*/
-function validateInput(choice){
-    return choices.includes(choice);
-}
+const rockBtn = document.querySelector('#rockBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const scissorsBtn = document.querySelector('#scissorsBtn');
+    rockBtn.addEventListener('click', () =>{
+        choice = "rock";
+    });
+    paperBtn.addEventListener('click', () =>{
+        choice = "paper";
+    });
+    scissorsBtn.addEventListener('click', () =>{
+        choice = "scissors";
+    });
 
 /*compare choices and set winner*/
 function checkWinner(choicePlayer, choiceComputer){

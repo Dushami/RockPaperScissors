@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>    
 <body>
-   <h1>Rock Paper Scissors</h1>
-   <button onclick="playGame()">Start game</button>
+    <div class="header">
+        <h1>ROCK PAPER SCISSORS</h1>
+    </div>
+    <div class="main">
+        <div class="displayScore">
+            <h2>Make Your Choice</h2>
+            <h3>First To 5 Wins The Game</h3>
+            <div class="scoreBoxes">
+                <div class="player">
+                    <div class="sign">❔</div>
+                    <div class="playerScore">Player: 0</div>
+                </div>
+                <div class="computer">
+                    <div class="sign">❔</div>
+                    <div class="cpuScore">computer: 0</div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="rockBtn" class="btnShape">
+                <div class="sign">✊</div>
+            </button>
+            <button id="paperBtn" class="btnShape">
+                <div class="sign">✋</div>
+            </button>
+            <button id="scissorsBtn" class="btnShape">
+                <div class="sign">✌</div>
+            </button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="legal">Courtesy of, Archie Hamilton 2022</div>
+    </div>
 </body>
-<script src="main2.js"></script>
 </html>
