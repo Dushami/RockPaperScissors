@@ -16,6 +16,7 @@ function playGame(){
 function playRound(round){
     const playerSelection = choice
     const computerSelection = computerChoice();
+    const changePic = updateChoicePic(playerSelection, computerSelection);
     const winner = checkWinner(playerSelection, computerSelection);
     winners.push(winner);
     logRound(playerSelection, computerSelection, winner, round);
@@ -55,21 +56,37 @@ function checkWinner(choicePlayer, choiceComputer){
     }
 }
 /*display the results*/
-function logWinners(){
-    let playerWins = winners.filter((winner) => winner == "You have won this round").length;
-    let computerWins = winners.filter((winner) => winner == "The computer won this round").length;
-    let gameTies = winners.filter((winner) => winner == "This round was a tie").length;
-    console.log("Results:");
-    console.log("Player won: ", playerWins, " time(s)");
-    console.log("Computer won: ", computerWins, " time(s)");
-    console.log("The game was tied ", gameTies, " time(s)");
-    winners.length = 0;
+const playerSign = document.querySelector('#playerSign');
+const computerSign = document.querySelector('#compSign');
+function updateChoicePic(player, computer){
+   switch(player){
+        case 'rock':
+            playerSign.innerHTML="✊";
+        break;
+        case 'paper':
+            playerSign.innerHTML="✋";
+        break;
+        case 'scissors':
+            playerSign.innerHTML="✌";
+        break;
+    }
+    switch(computer){
+        case 'rock':
+            computerSign.innerHTML="✊";
+        break;
+        case 'paper':
+            computerSign.innerHTML="✋";
+        break;
+        case 'scissors':
+            computerSign.innerHTML="✌";
+        break;
+    }
 }
 
 function logRound(playerChoice, computerChoice, winner, round){
-    console.log("Round: ", round);
+    
     console.log("Player chose: ", playerChoice);
     console.log("Computer chose: ", computerChoice);
-    console.log(winner, " Won this round");
+    console.log(winner);
     console.log("--------------------------");
 }
