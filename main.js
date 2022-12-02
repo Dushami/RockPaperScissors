@@ -1,6 +1,8 @@
 /*set global variables*/
 const choices = ["rock", "paper", "scissors"]
 const winners = []
+let playerScore = 0
+let computerScore = 0
 
 const button = document.querySelector('.buttons');
     button.addEventListener('click', () => {
@@ -42,19 +44,38 @@ const scissorsBtn = document.querySelector('#scissorsBtn');
     });
 
 /*compare choices and set winner*/
+const winLose = document.querySelector('h2');
+const logic = document.querySelector('h3');
+const playerWins = document.querySelector('.playerScore');
+const compWins = document.querySelector('.cpuScore');
+
+function capitalFirstLetter(string){
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
 function checkWinner(choicePlayer, choiceComputer){
     if (choicePlayer === choiceComputer){
-        return "This round was a tie";
+        winLose.innerHTML = "This round was a tie!";
+        logic.innerHTML = `${capitalFirstLetter(choicePlayer)} ties ${choiceComputer}`;
     }
     else if ((choicePlayer == "rock" && choiceComputer == "scissors") ||
              (choicePlayer == "paper" && choiceComputer == "rock") ||
              (choicePlayer == "scissors" && choiceComputer == "paper")){
-        return "You have won this round";
+                playerScore++
+                winLose.innerHTML = "You win!";
+                logic.innerHTML = `${capitalFirstLetter(choicePlayer)} beats ${choiceComputer}`;
     }
     else {
-        return "The computer won this round";
+        computerScore++
+        winLose.innerHTML = "You lose...";
+        logic.innerHTML = `${capitalFirstLetter(choicePlayer)} loses to ${choiceComputer}`;
     }
+    playerWins.innerHTML = `Player: ${playerScore}`;
+    compWins.innerHTML = `Computer: ${computerScore}`;
+    console.log(playerScore);
+    console.log(computerScore);
 }
+
 /*display the results*/
 const playerSign = document.querySelector('#playerSign');
 const computerSign = document.querySelector('#compSign');
