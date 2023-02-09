@@ -83,3 +83,61 @@ h2{
     align-items: center;
     padding: 50px;
 }
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #c7c6c3;
+    text-align: center;
+    font-size: 30px;
+    user-select: none;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+  }
+
+  button {
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modalTitle {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 5px;
+    color: #002244;
+  }
+  
+  .restartBtn {
+    padding: 10px 20px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .dimBack {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+  }
+  
+  .dimBack.active {
+    display: block;
+  }

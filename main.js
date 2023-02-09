@@ -3,6 +3,8 @@ const choices = ["rock", "paper", "scissors"]
 const winners = []
 let playerScore = 0
 let computerScore = 0
+const playerSign = document.querySelector('#playerSign');
+const computerSign = document.querySelector('#compSign');
 
 const button = document.querySelector('.buttons');
     button.addEventListener('click', () => {
@@ -11,17 +13,24 @@ const button = document.querySelector('.buttons');
 
 /*play game*/
 function playGame(){
+    if (isGameDone()){
+        openModal();
+        return
+    }
     playRound()
-    /*logWinners()*/
+    if (isGameDone()){
+        openModal();
+        modalMessage();
+    }
 }
+
 /*play round*/;
 function playRound(round){
     const playerSelection = choice
     const computerSelection = computerChoice();
     const changePic = updateChoicePic(playerSelection, computerSelection);
     const winner = checkWinner(playerSelection, computerSelection);
-    winners.push(winner);
-    logRound(playerSelection, computerSelection, winner, round);
+
 }
 
 /*get computer choice*/
@@ -76,9 +85,42 @@ function checkWinner(choicePlayer, choiceComputer){
     console.log(computerScore);
 }
 
+function isGameDone(){
+    return playerScore === 5 || computerScore === 5;
+}
+
+/*if game over display modal to restart*/
+const endModal = document.querySelector('.modal');
+const dimBack = document.querySelector('.dimBack');
+const restartBtn = document.querySelector('.restartBtn');
+const overlay = document.querySelector('#overlay');
+const endMessage = document.querySelector('.modalTitle');
+restartBtn.addEventListener('click', restartGame);
+overlay.addEventListener('click', closeModal);
+
+
+
+function openModal(){
+    endModal.classList.add('active');
+    dimBack.classList.add('active');
+}
+
+function closeModal(){
+    endModal.classList.remove('active');
+    dimBack.classList.remove('active');
+}
+
+function modalMessage(){
+    if (playerScore > computerScore){
+        endMessage.textContent = 'You Won!'
+    }
+    else{
+        endMessage.textContent = 'You Lost...'
+    }
+}
+
 /*display the results*/
-const playerSign = document.querySelector('#playerSign');
-const computerSign = document.querySelector('#compSign');
+
 function updateChoicePic(player, computer){
    switch(player){
         case 'rock':
@@ -104,10 +146,15 @@ function updateChoicePic(player, computer){
     }
 }
 
-function logRound(playerChoice, computerChoice, winner, round){
-    
-    console.log("Player chose: ", playerChoice);
-    console.log("Computer chose: ", computerChoice);
-    console.log(winner);
-    console.log("--------------------------");
+/*restart game*/
+function restartGame(){
+    playerScore = 0;
+    computerScore = 0;
+    winLose.textContent = `Make Your Choice`;
+    logic.textContent = `First To 5 Wins The Game`;
+    playerSign.textContent = `❔`;
+    computerSign.textContent = `❔`;
+    playerWins.textContent = `Player: 0`;
+    compWins.textContent = `Computer: 0`;
+    closeModal();
 }
